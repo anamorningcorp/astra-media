@@ -1,0 +1,32 @@
+name: Astra scheduled publish
+
+on:
+  schedule:
+    # Every 10 minutes. The script itself checks Europe/Zurich wall-clock
+    # time against each post's slot time, so this single fixed-UTC cron
+    # entry keeps working correctly through the CEST->CET switch on
+    # 2026-10-25 without needing to be edited.
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Run scheduled publish check
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          IG_BUSINESS_ACCOUNT_ID: ${{ secrets.IG_BUSINESS_ACCOUNT_ID }}
+          MEDIA_PUBLIC_BASE_URL: ${{ secrets.MEDIA_PUBLIC_BASE_URL }}
+        run: python scheduler_publish.py
