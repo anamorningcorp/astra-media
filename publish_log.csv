@@ -1,0 +1,2 @@
+timestamp,dia,slot,data_publicacao,formato,status,container_id,media_id,permalink,erro
+2026-10-17T12:40:56+02:00,5,lunch,17-10-2026,Animated quote (Reel 9:16 or 4:5),erro,17930992881181749,,,"Graph API error 400 on POST 28969189136048426/media_publish: {'error': {'message': 'Media ID is not available', 'type': 'OAuthException', 'code': 9007, 'error_subcode': 2207027, 'is_transient': False, 'error_user_title': 'Cannot Publish', 'error_user_msg': 'The media is not ready for publishing, please wait for a moment', 'fbtrace_id': 'Aw58_i0x10H2pgiP6AfoNrM'}}"
